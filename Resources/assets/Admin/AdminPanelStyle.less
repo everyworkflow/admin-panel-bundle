@@ -1,0 +1,176 @@
+/*
+ * @copyright EveryWorkflow. All rights reserved.
+ */
+
+@import "~antd/lib/style/themes/default.less";
+//@import '~antd/dist/antd.dark.less';
+@import "~antd/dist/antd.less";
+@import "./../../../../CoreBundle/Resources/assets/AntVariables.less";
+
+.app-container {
+  margin-left: 24px;
+  margin-right: 24px;
+
+  @media (max-width: 768px) {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}
+
+#root > .ant-layout > .ant-layout-content {
+  max-width: 100%;
+  //overflow-x: hidden;
+}
+
+.app-bar-panel {
+  z-index: 1;
+  width: 52px;
+  height: 100%;
+  position: fixed;
+  overflow: hidden;
+  background-color: @layout-body-background;
+  border-right: solid 1px @border-color-split;
+
+  &:hover {
+    overflow-y: auto;
+  }
+}
+
+.app-sidebar-panel {
+  left: 52px;
+  width: 208px;
+  height: 100%;
+  border-right: 0;
+  position: fixed;
+  overflow: hidden;
+  border-right: solid 1px @border-color-split;
+  background-color: @body-background;
+  z-index: 1;
+
+  &:hover {
+    overflow-y: auto;
+  }
+
+  .sidebar-header {
+    border-bottom: solid 1px @border-color-split;
+
+    .ant-btn {
+      height: 55px;
+      font-size: 20px;
+      padding: 0 16px 0 24px;
+      font-weight: bolder;
+      text-align: left;
+    }
+  }
+
+  ul.ant-menu {
+    border: none;
+
+    .ant-menu-item {
+      margin: 0;
+    }
+  }
+}
+
+.app-main-side-panel {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  &.active-mobile {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    height: 100%;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    background: @modal-mask-bg;
+
+    .ant-drawer-mask {
+      opacity: 1;
+      height: 100%;
+    }
+
+    .app-bar-panel {
+      overflow-y: auto;
+    }
+
+    .app-sidebar-panel {
+      width: calc(80% - 52px);
+      max-width: 280px;
+      overflow-y: auto;
+    }
+  }
+}
+
+.app-header-panel {
+  top: 0;
+  z-index: 5;
+  border-bottom: solid 1px @border-color-split;
+  background-color: @body-background;
+
+  .ant-layout-header {
+    padding: 0 16px;
+    height: 55px;
+    line-height: normal;
+    background-color: @body-background;
+  }
+}
+
+.app-sticky-page-header-panel {
+  top: 0;
+  z-index: 6;
+  border-bottom: solid 1px @border-color-split;
+  background-color: @body-background;
+
+  .ant-layout-header {
+    height: 55px;
+    padding: 0 16px;
+    line-height: normal;
+    background-color: @body-background;
+  }
+}
+
+.ant-table-wrapper .ant-table-content {
+  @media (max-width: 768px) {
+    overflow: auto;
+  }
+}
+
+.ant-pagination.ant-table-pagination {
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
+  .ant-pagination-total-text {
+    @media (max-width: 768px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+.app-panel-footer {
+  border-top: solid 1px #ccc;
+  padding-top: 16px;
+
+  & > div {
+    display: flex;
+    flex-direction: row;
+
+    & > div {
+      flex-grow: 1;
+    }
+
+    & > div:nth-child(2) {
+      text-align: right;
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}
