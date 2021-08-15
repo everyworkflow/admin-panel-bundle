@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "symfony/twig-bundle": "5.4.*",
         "everyworkflow/core-bundle": "dev-main",
         "everyworkflow/data-form-bundle": "dev-main",
         "everyworkflow/data-grid-bundle": "dev-main"
