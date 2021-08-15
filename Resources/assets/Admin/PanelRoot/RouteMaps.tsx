@@ -17,6 +17,9 @@ import { CustomerRoutes } from "@EveryWorkflow/CustomerBundle/Admin/PanelRoot/Cu
 import { CatalogCategoryRoutes } from "@EveryWorkflow/CatalogCategoryBundle/Admin/PanelRoot/CatalogCategoryRoutes";
 import { CatalogProductRoutes } from "@EveryWorkflow/CatalogProductBundle/Admin/PanelRoot/CatalogProductRoutes";
 
+/* Ecommerce */
+import { SalesOrderRoutes } from "@EveryWorkflow/SalesOrderBundle/Admin/PanelRoot/SalesOrderRoutes";
+
 export const RouteMaps = [
     PanelRoutes,
     ExampleRoutes,
@@ -32,4 +35,7 @@ export const RouteMaps = [
     /* PIM */
     CatalogCategoryRoutes,
     CatalogProductRoutes,
+
+    /* Ecommerce */
+    SalesOrderRoutes,
 ];
