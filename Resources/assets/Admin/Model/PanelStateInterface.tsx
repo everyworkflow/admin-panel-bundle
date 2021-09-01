@@ -14,6 +14,7 @@ interface PanelStateInterface {
     hide_footer: boolean;
     sidebar_data?: [SidebarItemInterface];
     alert_data: Array<AlertDataInterface>;
+    auth?: any;
 }
 
 export default PanelStateInterface;

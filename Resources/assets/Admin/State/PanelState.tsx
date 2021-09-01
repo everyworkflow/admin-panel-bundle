@@ -12,4 +12,5 @@ export const panelState: PanelStateInterface = {
     hide_footer: false,
     sidebar_data: undefined,
     alert_data: [],
+    auth: undefined,
 };

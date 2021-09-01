@@ -20,6 +20,8 @@ export const ACTION_SET_SIDEBAR_DATA = 'set_sidebar_data';
 
 export const ACTION_ADD_ALERT_DATA = 'add_alert_data';
 
+export const ACTION_SET_AUTH = 'set_auth';
+
 interface PanelActionInterface {
     type: string;
     payload: any;
@@ -89,6 +91,12 @@ const PanelReducer = (
             return {
                 ...state,
                 show_mobile_app_sidebar: false,
+            };
+        }
+        case ACTION_SET_AUTH: {
+            return {
+                ...state,
+                auth: action.payload,
             };
         }
         default:
