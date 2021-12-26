@@ -118,6 +118,10 @@ class SidebarComponent implements SidebarComponentInterface
                             'url' => '/system/eav/attribute-group',
                         ],
                         [
+                            'label' => 'Role & Permission',
+                            'url' => '/system/role',
+                        ],
+                        [
                             'label' => 'Scope',
                             'url' => '/system/scope',
                         ],

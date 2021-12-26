@@ -8,21 +8,19 @@ declare(strict_types=1);
 
 namespace EveryWorkflow\AdminPanelBundle\Controller;
 
+use EveryWorkflow\CoreBundle\Annotation\EwRoute;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class AdminPanelController extends AbstractController
 {
-    /**
-     * @Route(
-     *     path="/admin/{wildcard}",
-     *     name="admin_panel",
-     *     priority=-500,
-     *     methods="GET",
-     *     requirements={"wildcard": ".*"}
-     * )
-     */
+    #[EwRoute(
+        path: '/admin/{wildcard}',
+        name: 'admin_panel',
+        priority: -500,
+        methods: 'GET',
+        requirements: ['wildcard' => '.*']
+    )]
     public function __invoke(): Response
     {
         return $this->render('admin-panel.html.twig', [
