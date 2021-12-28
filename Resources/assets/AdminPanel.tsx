@@ -5,8 +5,8 @@
 import React from 'react';
 import AdminPanelRoot from "@EveryWorkflow/AdminPanelBundle/AdminPanelRoot";
 import RootPanelComponent from '@EveryWorkflow/PanelBundle/Component/RootPanelComponent';
-import "@EveryWorkflow/AdminPanelBundle/AdminPanelDarkStyle.less";
-// import "@EveryWorkflow/AdminPanelBundle/Admin/AdminPanelStyle.less";
+import "@EveryWorkflow/AdminPanelBundle/AdminPanelStyle.less";
+// import "@EveryWorkflow/AdminPanelBundle/AdminPanelDarkStyle.less";
 
 const AdminPanel = () => {
     return (

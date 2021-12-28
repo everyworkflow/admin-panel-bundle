@@ -61,7 +61,7 @@ const AccountSidePanel = ({ onSidePanelClose }: AccountSidePanelProps) => {
                     <Menu.Item icon={<GlobalOutlined />} key={'language'}>Language EN</Menu.Item>
                     <Menu.Item icon={<LockOutlined />} key={'lock'}>Lock</Menu.Item>
                     <Menu.Item icon={<LogoutOutlined />} key={'logout'} onClick={() => {
-                        LocalStorage.set('ew_auth', undefined);
+                        LocalStorage.remove('ew_auth');
                         panelDispatch({
                             type: ACTION_SET_AUTH,
                             payload: '',
