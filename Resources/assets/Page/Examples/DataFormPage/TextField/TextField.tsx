@@ -2,22 +2,22 @@
  * @copyright EveryWorkflow. All rights reserved.
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Form from 'antd/lib/form';
 import Input from 'antd/lib/input';
 import DynamicFieldPropsInterface from "@EveryWorkflow/DataFormBundle/Model/DynamicFieldPropsInterface";
 import TextFieldInterface from "@EveryWorkflow/DataFormBundle/Model/Field/TextFieldInterface";
-import {
-    FORM_MODE_EDIT,
-    FORM_MODE_VIEW
-} from "@EveryWorkflow/DataFormBundle/Component/DataFormComponent/DataFormComponent";
+import FormContext from '@EveryWorkflow/DataFormBundle/Context/FormContext';
+import { FORM_MODE_VIEW } from '@EveryWorkflow/DataFormBundle/Component/DataFormComponent/DataFormComponent';
 
 interface TextFieldProps extends DynamicFieldPropsInterface {
     fieldData: TextFieldInterface;
 }
 
-const TextField = ({ fieldData, mode = FORM_MODE_EDIT, onChange, children }: TextFieldProps) => {
-    if (mode === FORM_MODE_VIEW) {
+const TextField = ({ fieldData, onChange, children }: TextFieldProps) => {
+    const { state: formState } = useContext(FormContext);
+
+    if (formState.mode === FORM_MODE_VIEW) {
         return <span>{fieldData?.value}</span>;
     }
 
@@ -36,9 +36,8 @@ const TextField = ({ fieldData, mode = FORM_MODE_EDIT, onChange, children }: Tex
             <Form.Item
                 name={fieldData.name}
                 label={'New Form Field for name only - ' + fieldData.label}
-                initialValue={fieldData.value ?? ''}
-                rules={[{ required: fieldData.is_required }]}
-            >
+                initialValue={(fieldData.name && formState.initial_values[fieldData.name]) ?? ''}
+                rules={[{ required: fieldData.is_required }]}>
                 <Input
                     onChange={handleChange}
                     allowClear={fieldData.allow_clear}

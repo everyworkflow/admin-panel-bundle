@@ -12,6 +12,8 @@ import { PageRoutes } from "@EveryWorkflow/PageBundle/AdminPanelRoot/PageRoutes"
 
 import { ScopeRoutes } from "@EveryWorkflow/ScopeBundle/AdminPanelRoot/ScopeRoutes";
 import { AuthRoutes } from "@EveryWorkflow/AuthBundle/AdminPanelRoot/AuthRoutes";
+import { MenuRoutes } from "@EveryWorkflow/MenuBundle/AdminPanelRoot/MenuRoutes";
+import { SettingRoutes } from "@EveryWorkflow/SettingBundle/AdminPanelRoot/SettingRoutes";
 
 /* CRM */
 import { CustomerRoutes } from "@EveryWorkflow/CustomerBundle/AdminPanelRoot/CustomerRoutes";
@@ -32,8 +34,10 @@ export const RouteMaps = [
     UserRoutes,
     PageRoutes,
 
-    AuthRoutes,
     ScopeRoutes,
+    AuthRoutes,
+    MenuRoutes,
+    SettingRoutes,
 
     /* CRM */
     CustomerRoutes,

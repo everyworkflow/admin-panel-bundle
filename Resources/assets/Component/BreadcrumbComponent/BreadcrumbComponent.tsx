@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import AdminPanelContext from '@EveryWorkflow/AdminPanelBundle/Context/AdminPanelContext';
 import SidebarItemInterface from '../../Model/Sidebar/SidebarItemInterface';
 import Breadcrumb from 'antd/lib/breadcrumb';
+import { NavLink } from 'react-router-dom';
 
 const BreadcrumbComponent = () => {
     const { state: adminPanelState } = useContext(AdminPanelContext);
@@ -20,12 +21,12 @@ const BreadcrumbComponent = () => {
             const hierarchicalData: Array<SidebarItemInterface> = [];
             items.forEach((item: SidebarItemInterface) => {
                 let isItemAdded = false;
-                if (item.url === pathName) {
+                if (item.item_path && pathName.includes(item.item_path, 0)) {
                     hierarchicalData.push(item);
                     isItemAdded = true;
                 }
-                if (item.sidebar_data) {
-                    const nextItems = findHierarchical(item.sidebar_data, pathName);
+                if (item.children) {
+                    const nextItems = findHierarchical(item.children, pathName);
                     if (nextItems.length) {
                         if (!isItemAdded) {
                             hierarchicalData.push(item);
@@ -48,7 +49,11 @@ const BreadcrumbComponent = () => {
     return (
         <Breadcrumb style={{ margin: '16px 24px' }}>
             {getArrayItems().map((item, index: number) => (
-                <Breadcrumb.Item key={index}>{item.label}</Breadcrumb.Item>
+                <Breadcrumb.Item key={index}>{
+                    item.item_path ? (
+                        <NavLink to={item.item_path}>{item.item_label}</NavLink>
+                    ) : item.item_label
+                }</Breadcrumb.Item>
             ))}
         </Breadcrumb>
     );

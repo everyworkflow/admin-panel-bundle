@@ -2,7 +2,7 @@
  * @copyright EveryWorkflow. All rights reserved.
  */
 
-import React, { useRef } from 'react';
+import React, { useContext, CSSProperties } from 'react';
 import Layout from 'antd/lib/layout';
 import Button from 'antd/lib/button';
 import Space from 'antd/lib/space';
@@ -11,82 +11,81 @@ import Col from 'antd/lib/col';
 import Menu from 'antd/lib/menu';
 import Dropdown from 'antd/lib/dropdown';
 import DownOutlined from '@ant-design/icons/DownOutlined';
-import { NavLink } from 'react-router-dom';
 import ButtonInterface from "@EveryWorkflow/PanelBundle/Model/ButtonInterface";
-import { useSize } from 'ahooks';
+import ButtonHeaderAction from '@EveryWorkflow/DataGridBundle/HeaderAction/ButtonHeaderAction';
+import PanelContext from '@EveryWorkflow/PanelBundle/Context/PanelContext';
 
-const { Header } = Layout;
+interface headerButtonInterface extends ButtonInterface {
+    is_confirm?: boolean;
+    confirm_message?: string;
+}
 
 interface PageHeaderComponentProps {
     title?: string;
-    actions?: Array<ButtonInterface>;
-    children?: JSX.Element;
+    actions?: Array<headerButtonInterface>;
+    children?: JSX.Element | JSX.Element[];
+    left?: JSX.Element | JSX.Element[];
+    right?: JSX.Element | JSX.Element[];
+    isSticky?: boolean;
+    style?: CSSProperties;
 }
 
 const PageHeaderComponent = ({
     title,
     actions,
     children,
+    left,
+    right,
+    isSticky = true,
+    style
 }: PageHeaderComponentProps) => {
-    const headerRef = useRef<HTMLDivElement>(null);
-    const headerSize = useSize(headerRef);
+    const { state: panelState } = useContext(PanelContext);
 
     return (
         <>
             <div
-                ref={headerRef}
                 className="app-sticky-page-header-panel"
                 style={{
-                    position: headerSize?.width && headerSize?.width < 768 ? 'sticky' : 'sticky',
-                }}
-            >
-                <Header>
+                    ...style,
+                    position: isSticky ? 'sticky' : 'initial',
+                }}>
+                <Layout.Header>
                     <Row align="middle" style={{ height: 'inherit' }}>
-                        {title && <Col span={12}>{title}</Col>}
-                        {headerSize?.width && headerSize?.width < 768 &&
-                            actions ? (
-                            <Col
-                                span={title === undefined ? 24 : 12}
-                                style={{ textAlign: 'right' }}
-                            >
+                        <Col span={12}>{title && title}{left}</Col>
+                        <Col
+                            span={title === undefined ? 24 : 12}
+                            style={{ textAlign: 'right' }}>
+                            {panelState?.is_mobile && actions && actions.length > 1 ? (
                                 <Dropdown
                                     overlay={
                                         <Menu>
-                                            {actions.map((item, index) => (
-                                                <Menu.Item key={index} onClick={item.onClick}>
-                                                    {item.url ? (
-                                                        <NavLink to={item.url}>{item.label}</NavLink>
-                                                    ) : (
-                                                        item.label
-                                                    )}
-                                                </Menu.Item>
+                                            {actions.map((item: any, index) => (
+                                                <ButtonHeaderAction
+                                                    key={index}
+                                                    actionData={item}
+                                                    headerActionType="dropdown" />
                                             ))}
                                         </Menu>
                                     }
-                                    trigger={['click']}
-                                >
+                                    trigger={['click']}>
                                     <Button type="primary" className="ant-dropdown-link">
                                         Actions <DownOutlined />
                                     </Button>
                                 </Dropdown>
-                            </Col>
-                        ) : actions ? (
-                            <Col
-                                span={title === undefined ? 24 : 12}
-                                style={{ textAlign: 'right' }}
-                            >
+                            ) : actions && actions.length ? (
                                 <Space>
-                                    {actions.map((item, index) => (
-                                        <Button key={index} type="primary" onClick={item.onClick}>
-                                            {item.label}
-                                        </Button>
+                                    {actions.map((item: any, index) => (
+                                        <ButtonHeaderAction
+                                            key={index}
+                                            actionData={item} />
                                     ))}
                                 </Space>
-                            </Col>
-                        ) : null}
+                            ) : null}
+                            {right}
+                        </Col>
                         {children}
                     </Row>
-                </Header>
+                </Layout.Header>
             </div>
         </>
     );

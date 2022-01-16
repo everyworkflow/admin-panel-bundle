@@ -16,8 +16,7 @@ const FooterComponent = () => {
                             <a
                                 rel="noreferrer"
                                 href="https://everyworkflow.com/"
-                                target="_blank"
-                            >
+                                target="_blank">
                                 EveryWorkflow
                             </a>
                         </small>
@@ -30,8 +29,7 @@ const FooterComponent = () => {
                             <a
                                 rel="noreferrer"
                                 href="https://everyworkflow.com/report/"
-                                target="_blank"
-                            >
+                                target="_blank">
                                 Report an issue?
                             </a>
                         </small>

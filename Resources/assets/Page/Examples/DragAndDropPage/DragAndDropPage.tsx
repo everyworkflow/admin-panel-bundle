@@ -31,8 +31,7 @@ const DragItem = ({ data }: any) => {
                 width: 80,
                 textAlign: 'center',
                 marginRight: 16,
-            }}
-        >
+            }}>
             {dragging ? 'dragging' : `box-${data}`}
         </div>
     );
@@ -77,8 +76,7 @@ const DragAndDropPage = () => {
         <Card
             className="app-container"
             title={'Main'}
-            style={{ marginTop: 24, marginBottom: 24 }}
-        >
+            style={{ marginTop: 24, marginBottom: 24 }}>
             <div>
                 <div ref={dropRef} style={{ border: '1px dashed #e8e8e8', padding: 16, textAlign: 'center' }}>
                     {isHovering ? 'release here' : 'drop here'}

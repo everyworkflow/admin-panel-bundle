@@ -53,7 +53,7 @@ const PanelLayoutComponent = ({ children }: PanelLayoutComponentProps) => {
         <Layout className="layout">
             <Layout.Sider
                 className={state.show_mobile_app_sidebar ? 'app-main-side-panel active-mobile' : 'app-main-side-panel'}
-                width={260}
+                width={256 + 52}
                 theme="light">
                 <div ref={sidebarRef}>
                     <LeftMostSidebarComponent />
@@ -69,10 +69,6 @@ const PanelLayoutComponent = ({ children }: PanelLayoutComponentProps) => {
                     {isPanelLoaded && children}
                 </div>
                 {!state.hide_footer && <FooterComponent />}
-                {/*<PanelLayoutComponent>*/}
-                {/*    <LeftMostSidebarComponent/>*/}
-                {/*    <SidebarComponent/>*/}
-                {/*</PanelLayoutComponent>*/}
             </Layout.Content>
         </Layout>
     );

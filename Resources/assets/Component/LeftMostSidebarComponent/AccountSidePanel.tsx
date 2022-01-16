@@ -2,8 +2,13 @@
  * @copyright EveryWorkflow. All rights reserved.
  */
 
-import React, { useContext } from 'react';
-import { GlobalOutlined, LockOutlined, LogoutOutlined, UnorderedListOutlined, UserOutlined } from '@ant-design/icons';
+import React, { useContext, useState, useEffect } from 'react';
+import jwtDecode, { JwtPayload } from "jwt-decode";
+import GlobalOutlined from '@ant-design/icons/GlobalOutlined';
+import LockOutlined from '@ant-design/icons/LockOutlined';
+import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
+import UnorderedListOutlined from '@ant-design/icons/UnorderedListOutlined';
+import UserOutlined from '@ant-design/icons/UserOutlined';
 import Menu from 'antd/lib/menu';
 import SidePanelComponent from "@EveryWorkflow/PanelBundle/Component/SidePanelComponent";
 import {
@@ -22,7 +27,20 @@ interface AccountSidePanelProps {
 
 const AccountSidePanel = ({ onSidePanelClose }: AccountSidePanelProps) => {
     const { dispatch: panelDispatch } = useContext(PanelContext);
+    const [useData, setUserData] = useState<any>();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const getUserDataFromAuth = () => {
+            const ewAuth = LocalStorage.get('ew_auth');
+            return jwtDecode<JwtPayload>(ewAuth?.token);
+        }
+        try {
+            const userData = getUserDataFromAuth();
+            console.log('userData -->', userData);
+            setUserData(userData);
+        } catch (error: any) { }
+    }, []);
 
     return (
         <SidePanelComponent
@@ -31,14 +49,18 @@ const AccountSidePanel = ({ onSidePanelClose }: AccountSidePanelProps) => {
             fromDirection={PANEL_FROM_LEFT}
             style={{ marginLeft: 52 }}
             bodyStyle={{ padding: 0 }}
-            onClose={onSidePanelClose}
-        >
+            onClose={onSidePanelClose}>
             <>
-                <div style={{ padding: 16, paddingBottom: 0 }}>
-                    <Avatar src="/media/person.jpg" alt={'Account Icon'} icon={<UserOutlined />} />
-                    <h2>Admin User</h2>
-                </div>
-                <Menu style={{ border: 0, width: '100%' }}>
+                {useData && (
+                    <div style={{ padding: 16, textAlign: 'center', backgroundColor: '#f1f1f1' }}>
+                        <div style={{ marginBottom: 8 }}>
+                            <Avatar src={useData.profile_image} alt={'Account Icon'} icon={<UserOutlined />} size={64} />
+                        </div>
+                        <div style={{ fontSize: 18, fontWeight: 'bold' }}>{useData.first_name + ' ' + useData.last_name}</div>
+                        <div>{useData.username}</div>
+                    </div>
+                )}
+                <Menu style={{ border: 0, width: '100%', padding: 12 }}>
                     <Menu.Item icon={(
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +69,7 @@ const AccountSidePanel = ({ onSidePanelClose }: AccountSidePanelProps) => {
                             width="18"
                             height="18"
                             fill="currentColor"
-                            viewBox="0 0 16 16"
-                        >
+                            viewBox="0 0 16 16">
                             <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
                             <path fillRule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             <path

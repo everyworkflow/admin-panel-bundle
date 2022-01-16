@@ -10,10 +10,10 @@ import { ACTION_SET_PAGE_TITLE } from '@EveryWorkflow/PanelBundle/Reducer/PanelR
 import DataFormComponent from '@EveryWorkflow/DataFormBundle/Component/DataFormComponent';
 import PageHeaderComponent from '@EveryWorkflow/AdminPanelBundle/Component/PageHeaderComponent';
 import BreadcrumbComponent from '@EveryWorkflow/AdminPanelBundle/Component/BreadcrumbComponent';
-import { FORM_TYPE_HORIZONTAL } from '@EveryWorkflow/DataFormBundle/Component/DataFormComponent/DataFormComponent';
 import MediaPanelComponent from '@EveryWorkflow/MediaManagerBundle/Component/MediaPanelComponent';
 import { MEDIA_MANAGER_TYPE_MULTI_SELECT } from '@EveryWorkflow/MediaManagerBundle/Component/MediaManagerComponent/MediaManagerComponent';
 import AlertAction, { ALERT_TYPE_SUCCESS } from '@EveryWorkflow/PanelBundle/Action/AlertAction';
+import { FORM_TYPE_HORIZONTAL } from "@EveryWorkflow/DataFormBundle/Component/DataFormComponent/DataFormComponent";
 
 const cascader_options = [
   {
@@ -139,32 +139,35 @@ const DataFormPage = () => {
         title={'Edit ID: 12'}
         actions={[
           {
-            label: 'Open popup',
+            button_label: 'Open popup',
+            button_type: 'primary',
             onClick: () => {
               console.log('opening popup :D');
               setState(true);
             },
           },
           {
-            label: 'Save changes',
+            button_label: 'Save changes',
+            button_type: 'primary',
             onClick: () => {
               console.log('Save changes');
               form.submit();
               AlertAction({
-                message: 'Form data has been console logged.',
-                title: 'Form changes saved!',
+                description: 'Form data has been console logged.',
+                message: 'Form changes saved!',
                 type: ALERT_TYPE_SUCCESS,
               });
             },
           },
           {
-            label: 'Save and continue',
+            button_label: 'Save and continue',
+            button_type: 'primary',
             onClick: () => {
               console.log('Save and continue');
               form.submit();
               AlertAction({
-                message: 'Form data has been console logged.',
-                title: 'Form changes saved!',
+                description: 'Form data has been console logged.',
+                message: 'Form changes saved!',
                 type: ALERT_TYPE_SUCCESS,
               });
             },
@@ -175,8 +178,7 @@ const DataFormPage = () => {
       <Card
         className="app-container"
         title={'Horizontal form - Root'}
-        style={{ marginBottom: 24 }}
-      >
+        style={{ marginBottom: 24 }}>
         {apiData && (
           <DataFormComponent
             formId={'example-form-builder'}

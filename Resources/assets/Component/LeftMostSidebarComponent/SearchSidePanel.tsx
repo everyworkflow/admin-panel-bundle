@@ -23,8 +23,7 @@ const SearchSidePanel = ({ onSidePanelClose }: SearchSidePanelProps) => {
             size={PANEL_SIZE_MEDIUM}
             fromDirection={PANEL_FROM_LEFT}
             style={{ marginLeft: 52 }}
-            onClose={onSidePanelClose}
-        >
+            onClose={onSidePanelClose}>
             <>
                 <Input.Search
                     placeholder="input search text"

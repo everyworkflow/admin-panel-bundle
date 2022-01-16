@@ -22,8 +22,7 @@ const MessageSidePanel = ({ onSidePanelClose }: MessageSidePanelProps) => {
             fromDirection={PANEL_FROM_LEFT}
             style={{ marginLeft: 52 }}
             // bodyStyle={{ padding: 0 }}
-            onClose={onSidePanelClose}
-        >
+            onClose={onSidePanelClose}>
             <>
                 <div style={{ border: 'solid 1px #666', padding: 16 }}>Chat Box</div>
             </>

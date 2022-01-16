@@ -45,53 +45,60 @@ class DataFormController extends AbstractController
     )]
     public function __invoke(Request $request): JsonResponse
     {
-        $formBuilder = $this->formFactory->create([
-            $this->formFieldFactory->createField([
+        $formBuilder = $this->formFactory->create();
+
+        $formBuilder->setFields([
+            $this->formFieldFactory->create([
+                'label' => 'Name',
+                'name' => 'name',
+                'field_type' => 'text_field',
+            ]),
+            $this->formFieldFactory->create([
                 'label' => 'Email address',
                 'name' => 'email',
                 'field_type' => 'text_field',
                 'input_type' => 'email',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Password',
                 'name' => 'password',
                 'field_type' => 'text_field',
                 'input_type' => 'password',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Description',
                 'name' => 'description',
                 'row_count' => 5,
                 'field_type' => 'textarea_field',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Description markdown',
                 'name' => 'description_markdown',
                 'field_type' => 'markdown_field',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Primary color',
                 'name' => 'primary_color',
                 'field_type' => 'color_picker_field',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Brand logo',
                 'name' => 'brand_logo',
                 'field_type' => 'file_field',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Is enabled',
                 'name' => 'is_enabled',
                 'field_type' => 'check_field',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Is disabled',
                 'name' => 'is_disabled',
                 'field_type' => 'switch_field',
                 'checked_label' => 'Disabled',
                 'unchecked_label' => 'Enabled',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Gender',
                 'name' => 'gender',
                 'field_type' => 'radio_field',
@@ -110,7 +117,7 @@ class DataFormController extends AbstractController
                     ]),
                 ],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Gender selector',
                 'name' => 'gender_selector',
                 'field_type' => 'select_field',
@@ -129,7 +136,7 @@ class DataFormController extends AbstractController
                     ]),
                 ],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Gender selector searchable',
                 'name' => 'gender_selector_searchable',
                 'field_type' => 'select_field',
@@ -149,58 +156,58 @@ class DataFormController extends AbstractController
                     ]),
                 ],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Date of birth',
                 'name' => 'dob',
                 'field_type' => 'date_picker_field',
                 'value' => '1997-06-02',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Time of birth',
                 'name' => 'tob',
                 'field_type' => 'time_picker_field',
                 'value' => '08:45:16',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Deleted at',
                 'name' => 'deleted_at',
                 'field_type' => 'date_time_picker_field',
                 'value' => '2019-08-12 08:45:16',
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Leave date range',
                 'name' => 'leave_date_range',
                 'field_type' => 'date_range_picker_field',
                 'value' => ['2019-08-12', '2019-08-19'],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Break time range',
                 'name' => 'break_time_range',
                 'field_type' => 'time_range_picker_field',
                 'value' => ['08:15:20', '12:25:35'],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Black friday sale date range',
                 'name' => 'black_friday_sale_date_range',
                 'field_type' => 'date_time_range_picker_field',
                 'value' => ['2019-08-12 08:45:30', '2019-08-26 22:15:30'],
             ]),
-            $this->formFieldFactory->createField([
+            $this->formFieldFactory->create([
                 'label' => 'Input group field',
                 'name' => 'input_group_field',
                 'field_type' => 'text_field',
                 'prefix_text' => 'https://example.com/',
                 'suffix_text' => '@example.com',
             ]),
-            $this->formFieldFactory->create(MediaImageSelectorField::class, [
+            $this->formFieldFactory->createFromClassName(MediaImageSelectorField::class, [
                 'label' => 'Media image selector',
                 'name' => 'media_image_selector',
             ]),
-            $this->formFieldFactory->create(MediaImageGallerySelectorField::class, [
+            $this->formFieldFactory->createFromClassName(MediaImageGallerySelectorField::class, [
                 'label' => 'Media image gallery selector',
                 'name' => 'media_image_gallery_selector',
             ]),
-            $this->formFieldFactory->create(MediaFileSelectorField::class, [
+            $this->formFieldFactory->createFromClassName(MediaFileSelectorField::class, [
                 'label' => 'Media file selector',
                 'name' => 'media_file_selector',
             ]),

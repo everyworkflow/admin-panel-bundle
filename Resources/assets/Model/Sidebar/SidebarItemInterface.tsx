@@ -3,12 +3,12 @@
  */
 
 interface SidebarItemInterface {
-    icon?: string;
+    item_icon?: string;
     svg?: string;
-    label?: string;
-    url?: string;
+    item_label?: string;
+    item_path?: string;
     showBack?: boolean;
-    sidebar_data?: [SidebarItemInterface];
+    children?: [SidebarItemInterface];
 }
 
 export default SidebarItemInterface;

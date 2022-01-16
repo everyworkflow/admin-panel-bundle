@@ -8,7 +8,7 @@ import Button from 'antd/lib/button';
 import Space from 'antd/lib/space';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import { MenuUnfoldOutlined } from "@ant-design/icons";
+import MenuUnfoldOutlined from "@ant-design/icons/MenuUnfoldOutlined";
 import AdminPanelContext from "@EveryWorkflow/AdminPanelBundle/Context/AdminPanelContext";
 import { ACTION_SHOW_MOBILE_APP_SIDEBAR } from "@EveryWorkflow/AdminPanelBundle/Reducer/AdminPanelReducer";
 import { useSize } from 'ahooks';
@@ -34,8 +34,7 @@ const HeaderComponent = () => {
                     // headerSize?.width && headerSize?.width < 768
                     //     ? 'initial'
                     //     : 'sticky',
-                }}
-            >
+                }}>
                 <Layout.Header>
                     <Row gutter={16} align="middle" style={{ height: 'inherit' }}>
                         <Col span={12}>
@@ -51,9 +50,6 @@ const HeaderComponent = () => {
                             </Space>
                         </Col>
                         <Col span={12} style={{ textAlign: 'right' }}>
-                            <Space>
-                                <span>Something here</span>
-                            </Space>
                         </Col>
                     </Row>
                 </Layout.Header>

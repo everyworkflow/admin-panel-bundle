@@ -13,6 +13,7 @@ import { RouteMaps } from "@EveryWorkflow/AdminPanelBundle/AdminPanelRoot/RouteM
 import ScrollToTopOnRouteChange from '@EveryWorkflow/PanelBundle/Component/ScrollToTopOnRouteChange';
 import PanelContext from '@EveryWorkflow/PanelBundle/Context/PanelContext';
 import LoginPage from '@EveryWorkflow/AuthBundle/Admin/Page/LoginPage';
+import './RootStyle.css';
 
 const AdminPanelRoot = () => {
     const { state: panelState } = useContext(PanelContext);
