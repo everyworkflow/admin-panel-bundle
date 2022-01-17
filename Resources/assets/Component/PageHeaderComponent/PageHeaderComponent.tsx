@@ -51,38 +51,40 @@ const PageHeaderComponent = ({
                 }}>
                 <Layout.Header>
                     <Row align="middle" style={{ height: 'inherit' }}>
-                        <Col span={12}>{title && title}{left}</Col>
-                        <Col
-                            span={title === undefined ? 24 : 12}
-                            style={{ textAlign: 'right' }}>
-                            {panelState?.is_mobile && actions && actions.length > 1 ? (
-                                <Dropdown
-                                    overlay={
-                                        <Menu>
-                                            {actions.map((item: any, index) => (
-                                                <ButtonHeaderAction
-                                                    key={index}
-                                                    actionData={item}
-                                                    headerActionType="dropdown" />
-                                            ))}
-                                        </Menu>
-                                    }
-                                    trigger={['click']}>
-                                    <Button type="primary" className="ant-dropdown-link">
-                                        Actions <DownOutlined />
-                                    </Button>
-                                </Dropdown>
-                            ) : actions && actions.length ? (
-                                <Space>
-                                    {actions.map((item: any, index) => (
-                                        <ButtonHeaderAction
-                                            key={index}
-                                            actionData={item} />
-                                    ))}
-                                </Space>
-                            ) : null}
-                            {right}
-                        </Col>
+                        {title && (<Col span={12}>{title}{left}</Col>)}
+                        {actions && actions.length > 1 && (
+                            <Col
+                                span={title === undefined ? 24 : 12}
+                                style={{ textAlign: 'right' }}>
+                                {panelState?.is_mobile ? (
+                                    <Dropdown
+                                        overlay={
+                                            <Menu>
+                                                {actions.map((item: any, index) => (
+                                                    <ButtonHeaderAction
+                                                        key={index}
+                                                        actionData={item}
+                                                        headerActionType="dropdown" />
+                                                ))}
+                                            </Menu>
+                                        }
+                                        trigger={['click']}>
+                                        <Button type="primary" className="ant-dropdown-link">
+                                            Actions <DownOutlined />
+                                        </Button>
+                                    </Dropdown>
+                                ) : (
+                                    <Space>
+                                        {actions.map((item: any, index) => (
+                                            <ButtonHeaderAction
+                                                key={index}
+                                                actionData={item} />
+                                        ))}
+                                    </Space>
+                                )}
+                                {right}
+                            </Col>
+                        )}
                         {children}
                     </Row>
                 </Layout.Header>
