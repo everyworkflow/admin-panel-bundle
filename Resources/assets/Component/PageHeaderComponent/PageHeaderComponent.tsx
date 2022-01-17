@@ -52,11 +52,11 @@ const PageHeaderComponent = ({
                 <Layout.Header>
                     <Row align="middle" style={{ height: 'inherit' }}>
                         {title && (<Col span={12}>{title}{left}</Col>)}
-                        {actions && actions.length > 1 && (
+                        {actions && (
                             <Col
                                 span={title === undefined ? 24 : 12}
                                 style={{ textAlign: 'right' }}>
-                                {panelState?.is_mobile ? (
+                                {panelState?.is_mobile && actions.length > 1 ? (
                                     <Dropdown
                                         overlay={
                                             <Menu>
