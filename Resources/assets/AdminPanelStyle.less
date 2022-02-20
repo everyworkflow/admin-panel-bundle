@@ -189,3 +189,25 @@
     border-left: solid 1px @border-color-split;
   }
 }
+
+.media-gallery-card-col {
+  .media-gallery-card-wrapper {
+    position: relative;
+
+    .media-gallery-card-hover {
+      background: rgba(0, 0, 0, 0.5);
+      transition: opacity 0.3s;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      display: none;
+    }
+
+    &:hover .media-gallery-card-hover {
+      display: flex;
+    }
+  }
+}

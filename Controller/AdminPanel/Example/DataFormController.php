@@ -77,14 +77,14 @@ class DataFormController extends AbstractController
                 'field_type' => 'markdown_field',
             ]),
             $this->formFieldFactory->create([
+                'label' => 'Description wysiwyg',
+                'name' => 'description_wysiwyg',
+                'field_type' => 'wysiwyg_field',
+            ]),
+            $this->formFieldFactory->create([
                 'label' => 'Primary color',
                 'name' => 'primary_color',
                 'field_type' => 'color_picker_field',
-            ]),
-            $this->formFieldFactory->create([
-                'label' => 'Brand logo',
-                'name' => 'brand_logo',
-                'field_type' => 'file_field',
             ]),
             $this->formFieldFactory->create([
                 'label' => 'Is enabled',
@@ -199,17 +199,41 @@ class DataFormController extends AbstractController
                 'prefix_text' => 'https://example.com/',
                 'suffix_text' => '@example.com',
             ]),
-            $this->formFieldFactory->createFromClassName(MediaImageSelectorField::class, [
-                'label' => 'Media image selector',
-                'name' => 'media_image_selector',
+            $this->formFieldFactory->create([
+                'label' => 'Media image selector field',
+                'name' => 'media_image_selector_field',
+                'field_type' => 'media_image_selector_field',
+                'upload_path' => '/media/example',
             ]),
-            $this->formFieldFactory->createFromClassName(MediaImageGallerySelectorField::class, [
-                'label' => 'Media image gallery selector',
-                'name' => 'media_image_gallery_selector',
+            $this->formFieldFactory->create([
+                'label' => 'Media image gallery selector field',
+                'name' => 'media_image_gallery_selector_field',
+                'field_type' => 'media_image_gallery_selector_field',
+                'upload_path' => '/media/example',
             ]),
-            $this->formFieldFactory->createFromClassName(MediaFileSelectorField::class, [
-                'label' => 'Media file selector',
-                'name' => 'media_file_selector',
+            $this->formFieldFactory->create([
+                'label' => 'Media file selector field',
+                'name' => 'media_file_selector_field',
+                'field_type' => 'media_file_selector_field',
+                'upload_path' => '/media/example',
+            ]),
+            $this->formFieldFactory->create([
+                'label' => 'Media image uploader field',
+                'name' => 'media_image_uploader_field',
+                'field_type' => 'media_image_uploader_field',
+                'upload_path' => '/media-manager/upload-image?path=/media/example',
+            ]),
+            $this->formFieldFactory->create([
+                'label' => 'Media image gallery uploader field',
+                'name' => 'media_image_gallery_uploader_field',
+                'field_type' => 'media_image_gallery_uploader_field',
+                'upload_path' => '/media-manager/upload-image?path=/media/example',
+            ]),
+            $this->formFieldFactory->create([
+                'label' => 'Media file uploader field',
+                'name' => 'media_file_uploader_field',
+                'field_type' => 'media_file_uploader_field',
+                'upload_path' => '/media-manager/upload?path=/media/example',
             ]),
         ]);
 
