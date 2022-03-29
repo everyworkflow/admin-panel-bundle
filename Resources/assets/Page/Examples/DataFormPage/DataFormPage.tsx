@@ -116,7 +116,7 @@ const DataFormPage = () => {
       payload: 'Data form example',
     });
     const run = async () => {
-      let data = await Remote.get('/admin-panel/example/data-form');
+      let data = await Remote.get('/admin-panel/example/data-form?for=data-form');
       data.fields.splice(10, 0, ...mockData);
       setApiData(data);
     };

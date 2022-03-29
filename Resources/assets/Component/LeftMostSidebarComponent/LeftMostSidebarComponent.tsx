@@ -26,7 +26,12 @@ import SettingSidePanel
 import IndexedDb from '@EveryWorkflow/PanelBundle/Service/IndexedDb';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-const LeftMostSidebarComponent = () => {
+interface LeftMostSidebarComponentProps {
+    projectShortName?: string;
+    projectLongName?: string;
+}
+
+const LeftMostSidebarComponent = ({ projectShortName = 'EW', projectLongName = 'EveryWorkflow' }: LeftMostSidebarComponentProps) => {
     const [sidePanelState, setSidePanelState] = useState<string | null>(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [notificationCount, setNotificationCount] = useState(0);
@@ -60,9 +65,9 @@ const LeftMostSidebarComponent = () => {
                     display: 'flex',
                     alignItems: 'center'
                 }}>
-                    <Tooltip title="EveryWorkflow" placement="right">
+                    <Tooltip title={projectLongName} placement="right">
                         <Link style={{ fontWeight: 'bolder', fontSize: 24, textAlign: 'center', color: '#000' }}
-                            to="/">EW</Link>
+                            to="/">{projectShortName}</Link>
                     </Tooltip>
                 </div>
                 <Scrollbars autoHide={true} style={{ height: 'calc(100vh - 56px)' }}>
