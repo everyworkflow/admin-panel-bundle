@@ -9,15 +9,14 @@ declare(strict_types=1);
 namespace EveryWorkflow\AdminPanelBundle\Component\Admin;
 
 use EveryWorkflow\AdminPanelBundle\Model\AdminPanelConfigProviderInterface;
+use EveryWorkflow\AuthBundle\Security\AuthUserInterface;
 
 class SidebarComponent implements SidebarComponentInterface
 {
-    protected AdminPanelConfigProviderInterface $adminPanelConfigProvider;
-
     public function __construct(
-        AdminPanelConfigProviderInterface $adminPanelConfigProvider
+        protected AdminPanelConfigProviderInterface $adminPanelConfigProvider,
+        protected AuthUserInterface $authUser
     ) {
-        $this->adminPanelConfigProvider = $adminPanelConfigProvider;
     }
 
     public function getData(): ?array
@@ -43,6 +42,23 @@ class SidebarComponent implements SidebarComponentInterface
         foreach ($items as $key => $item) {
             if (isset($item['status']) && $item['status'] === 'disable') {
                 continue;
+            }
+            if (isset($item['permissions'])) {
+                if (is_string($item['permissions'])) {
+                    if (!in_array($item['permissions'], $this->authUser->getData('permissions'))){
+                        continue;
+                    }
+                } else if (is_array($item['permissions'])) {
+                    $isAllowed = false;
+                    foreach ($item['permissions'] as $permission) {
+                        if (in_array($permission, $this->authUser->getData('permissions'))){
+                            $isAllowed = true;
+                        }
+                    }
+                    if (!$isAllowed) {
+                        continue;
+                    }
+                }
             }
             $menuItemData = [
                 'name' => $key,
